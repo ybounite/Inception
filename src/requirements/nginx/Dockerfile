@@ -9,7 +9,7 @@ RUN	rm /etc/nginx/sites-available/default && \
 #copy custom nginx.conf to the container
 COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN mkdir -p /var/www/html
+RUN	 mkdir -p /var/www/html
 COPY web/index.html /var/www/html/index.html
 
 # Expose prot 80 to ther host machine
