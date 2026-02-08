@@ -3,13 +3,21 @@ FROM debian:12.13-slim
 RUN apt update && apt upgrade -y && apt install -y \
 	nginx
 
-RUN	rm -f /etc/nginx/sites-available/default && \
-	rm -f /etc/nginx/sites-enabled/default
+RUN	rm /etc/nginx/sites-available/default && \
+	rm /etc/nginx/sites-enabled/default
 
 #copy custom nginx.conf to the container
 COPY nginx.conf /etc/nginx/nginx.conf
 
+RUN mkdir -p /var/www/html
+COPY web/index.html /var/www/html/index.html
+
+# Expose prot 80 to ther host machine
 EXPOSE 80
+
+# Command to run Nginx when the container starts
+# The '-g "daemon off;"' argument keeps Nginx running in the foreground,
+# which is necessary for Docker containers to stay alive.
 
 CMD [ "nginx", "-g", "daemon off;"]
 
