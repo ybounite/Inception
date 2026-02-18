@@ -1,0 +1,59 @@
+services:
+  nginx:
+    build: ./nginx/.
+    container_name: nginx
+    image: nginx
+    depends_on:
+      - wordpress
+    volumes:
+      - "wordpress:/var/www/html"
+    ports:
+      - "80:80"
+    networks:
+      - net-incption
+    restart:  unless-stopped
+
+  mariadb:
+    build: ./mariadb/.
+    container_name: mariadb
+    image: mariadb
+    volumes:
+      - mariadb:/var/lib/mysql
+    env_file:
+      - ./.env
+    networks:
+      - net-incption
+    restart:  unless-stopped
+
+  wordpress:
+    build: ./wordpress/.
+    container_name: wordpress
+    image: wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress:/var/www/html
+    env_file:
+      - .env
+    networks:
+      - net-incption
+    restart:  unless-stopped
+  
+networks:
+  net-incption:
+    driver: bridge
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: '/home/ybounite/data/wp'
+      o: 'bind'
+
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      device: '/home/ybounite/data/db'
+      o: 'bind'

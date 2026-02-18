@@ -1,28 +1,30 @@
-IMAGE-NAME = image-nginx
-CONTAINER-NAME = container-nginx
-PORT = 8080
-.PHONY: all build run stop clean help
+DOCKER = docker-compose 
 
-all: build
+LOCAL_DIR = ~/data/
 
-build:
-	sudo docker build -t $(IMAGE-NAME) .
+all: up
 
-run:
-	sudo docker run -d --name $(CONTAINER-NAME) -p $(PORT)
+up:
+	@mkdir -p $(LOCAL_DIR)wp
+	@mkdir -p $(LOCAL_DIR)db
+	$(DOCKER) up -d --build
+
+down:
+	$(DOCKER) down -v
+	@sudo rm -rf $(LOCAL_DIR)wp/*
+	@sudo rm -rf $(LOCAL_DIR)db/*
 
 stop:
-	sudo docker stop $(CONTAINER-NAME)
-	sudo docker rm $(CONTAINER-NAME)
+	$(DOCKER) stop
 
-clean: stop
-	sudo docker rmi -f $(IMAGE-NAME)
+start:
+	$(DOCKER) start
 
-help:
-	@echo "Available targets:"
-	@echo "  make build      - Build Docker image"
-	@echo "  make run        - Build and run container"
-	@echo "  make stop       - Stop and remove container"
-#	@echo "  make restart    - Stop and restart container"
-	@echo "  make clean      - Remove image and container"
-#	@echo "  make logs       - View container logs"
+clean:
+	$(DOCKER) down --rmi all --volumes
+	@sudo rm -rf $(LOCAL_DIR)wp/*
+	@sudo rm -rf $(LOCAL_DIR)db/*
+
+re: clean all
+
+.PHONY: up down start stop clean re
