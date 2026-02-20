@@ -30,7 +30,7 @@ logs:
 	$(DOCKER) logs 
 
 clean: stop
-	$(DOCKER) down --rmi -a --volumes -f
+	$(DOCKER) down --rmi -a --volumes
 	@sudo rm -rf $(LOCAL_DIR)
 
 re: clean all
