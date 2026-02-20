@@ -1,4 +1,4 @@
-DOCKER = docker-compose 
+DOCKER = docker-compose -f srcs/docker-compose.yml
 
 LOCAL_DIR = /home/ybounite/data/
 
@@ -14,16 +14,25 @@ down:
 	@sudo rm -rf $(LOCAL_DIR)wp/*
 	@sudo rm -rf $(LOCAL_DIR)db/*
 
+build:
+	$(DOCKER) build
+
 stop:
 	$(DOCKER) stop
 
-start:
-	$(DOCKER) start
+restart:
+	$(DOCKER) restart
+
+ps:
+	$(DOCKER) ps
+
+logs:
+	$(DOCKER) logs 
 
 clean: stop
-	$(DOCKER) down --rmi all --volumes
+	$(DOCKER) down --rmi -a --volumes -f
 	@sudo rm -rf $(LOCAL_DIR)
 
 re: clean all
 
-.PHONY: up down start stop clean re
+.PHONY: up down build stop restart ps logs clean re 
