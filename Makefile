@@ -1,6 +1,6 @@
 DOCKER = docker-compose 
 
-LOCAL_DIR = ~/data/
+LOCAL_DIR = /home/ybounite/data/
 
 all: up
 
@@ -20,10 +20,9 @@ stop:
 start:
 	$(DOCKER) start
 
-clean:
+clean: stop
 	$(DOCKER) down --rmi all --volumes
-	@sudo rm -rf $(LOCAL_DIR)wp/*
-	@sudo rm -rf $(LOCAL_DIR)db/*
+	@sudo rm -rf $(LOCAL_DIR)
 
 re: clean all
 
