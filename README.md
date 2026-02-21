@@ -72,38 +72,39 @@ Docker is used to package each service into lightweight, isolated containers.
 Docker Compose orchestrates these services, manages networking, and handles persistent storage.
 
 ### Virtual Machines vs Docker
-
+```
 |   Virtual Machines   |        Docker      |
 ├──────────────────────┼────────────────────┤
 | Full guest OS        | Shares host kernel |
 | Heavy resource usage | Lightweight        |
 | Slow startup         | Fast startup       |
 | Large disk footprint | Small footprint    |
-
+```
 **Design choice:** Docker is more efficient, portable, and suitable for microservice architectures.
 
 ---
 
 ### Secrets vs Environment Variables
-
+```
 |          Secrets           |     Environment Variables      |
 ├────────────────────────────┼────────────────────────────────┤
 | Secure storage             | Plain-text exposure            |
 | Recommended for sensitive data | Suitable for configuration |
 | Managed securely            | Visible in container          |
-
+```
 **Design choice:**  
 Environment variables are used as required by the subject. In real production environments, Docker Secrets would be preferred for sensitive credentials.
 
 ---
 
 ### Docker Network vs Host Network
-
+```
 |    Docker Bridge Network   |    Host Network              |
 ├────────────────────────────┼──────────────────────────────┤
 | Isolated internal network  |  Shares host network         |
 | Service name resolution    |  Direct port exposure        |
 | More secure                |  Less isolation              |
+```
 
 **Design choice:**  
 A custom Docker bridge network ensures secure internal communication between services.
@@ -111,13 +112,13 @@ A custom Docker bridge network ensures secure internal communication between ser
 ---
 
 ### Docker Volumes vs Bind Mounts
-
+```
 |      Docker Volumes        |      Bind Mounts             |
 ├────────────────────────────┼──────────────────────────────┤
 | Managed by Docker          | Linked directly to host path │
 | Portable                   | Host-dependent               │
 | Recommended for production | Often used in development    │
-
+```
 **Design choice:**  
 Docker volumes are used to persist WordPress and MariaDB data.
 
