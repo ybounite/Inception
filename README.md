@@ -143,7 +143,7 @@ Classic references used for this project:
 - Docker documentation: https://docs.docker.com/
 - Docker Compose documentation: https://docs.docker.com/compose/
 - Docker Deep Dive: Zero to Docker in a Single Book 
-![Docker_DeepDiveZeroToDockerInASingleBook.pdf](Inception_42/Docker_DeepDiveZeroToDockerInASingleBook.pdfg)
+![Docker_DeepDiveZeroToDockerInASingleBook.pdf](Inception_42/Docker_Book.pdf)
 - NGINX documentation: https://nginx.org/en/docs/
 - WordPress documentation: https://wordpress.org/documentation/
 - PHP-FPM documentation: https://www.php.net/manual/en/install.fpm.php
