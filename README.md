@@ -38,11 +38,9 @@ This project simulates a production-like infrastructure while respecting strict 
 ```bash
 git clone git@github.com:ybounite/Inception.git
 cd Inception
-
-#Project Structure
-
+```
+----
 ## 📁 Project Structure
-
 ```
 .
 ├── Makefile                         # Build automation
@@ -66,7 +64,6 @@ cd Inception
 ├── USER_DOC.md                      # User documentation
 └── DEV_DOC.md                       # Developer documentation
 ```
-
 ---
 
 ## Use of Docker & Design Choices
