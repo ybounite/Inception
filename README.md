@@ -125,3 +125,39 @@ A custom Docker bridge network ensures secure internal communication between ser
 Docker volumes are used to persist WordPress and MariaDB data.
 
 ---
+
+## 📚 Documentation
+
+- **[User Documentation](USER_DOC.md)** - For end users and administrators
+  - How to start/stop services
+  - Access URLs and credentials
+  - Troubleshooting guide
+  
+- **[Developer Documentation](DEV_DOC.md)** - For developers
+  - Environment setup from scratch
+  - Build and deployment process
+  - Container and volume management
+  - Network architecture
+
+## Resources
+
+Classic references used for this project:
+
+- Docker documentation: https://docs.docker.com/
+- Docker Compose documentation: https://docs.docker.com/compose/
+- [Nigel Poulton, *Docker Deep Dive: Zero to Docker in a Single Book*]
+- NGINX documentation: https://nginx.org/en/docs/
+- WordPress documentation: https://wordpress.org/documentation/
+- PHP-FPM documentation: https://www.php.net/manual/en/install.fpm.php
+- MariaDB documentation: https://mariadb.com/kb/en/documentation/
+- OWASP TLS/HTTPS best practices: https://cheatsheetseries.owasp.org/
+
+### AI Usage Disclosure
+
+AI assistance was used for:
+
+- README proofreading and structure improvements
+- wording and grammar refinement
+- validating section completeness against subject requirements
+
+AI was **not** used to replace core project implementation decisions or mandatory manual setup/testing steps.
