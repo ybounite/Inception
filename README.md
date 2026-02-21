@@ -1,88 +1,45 @@
 *This project has been created as part of the 42 curriculum by ybounite.*
 
-# Description
-The Inception project consists of setting up a small infrastructure composed of multiple services using Docker and Docker Compose, all hosted within a virtual machine. The goal is to build each service from scratch with custom Dockerfiles and orchestrate them with Docker Compose while following best practices for containerization.
+## Description
 
-## 📋 Project Overview
+**Inception** is a system administration and DevOps project focused on building a secure and modular web infrastructure using Docker.
 
-This probect create a small infrastruction usinf Docker container with the following server:
+The goal of the project is to design and deploy a multi-container architecture composed of:
 
-- ***NGINX*** Web server with TLSv1.2 or TLSv1.3
-- ***WordPress + php-fpm*** Content management system (without nginx)
-- ***MariaDB***  Database server (without nginx)
+- **NGINX** (Web server with TLSv1.2 / TLSv1.3)
+- **WordPress + php-fpm** (Application layer)
+- **MariaDB** (Database server)
 
-Each service runs in a dedicated Docker container built from custom Dockerfiles (Alpine Linux or Debian penultimate stable version).
+Each service runs in its own isolated Docker container, built from custom Dockerfiles using Alpine Linux or the penultimate stable version of Debian.
 
-## Key Features
+The project demonstrates:
 
-- Custom Docker images (no pre-built images from DockerHub except Alpine/Debian base)
-- Secure HTTPS connection with TLS
-- Docker volumes for persistent data storage
-- Isolated Docker network for service communication
-- Environment variables for configuration
-- Automatic container restart on crash
-- Makefile for easy management
+- Containerization principles
+- Service isolation
+- Secure inter-container communication
+- Data persistence using Docker volumes
+- Infrastructure orchestration with Docker Compose
+- Secure configuration using environment variables
 
-## 🚀 Quick Start
+This project simulates a production-like infrastructure while respecting strict architectural and security constraints.
+
+## Instructions
 
 ### Prerequisites
 
 - Docker Engine (20.10+)
-- Docker Compose (2.0+)
+- Docker Compose (v2+)
 - Make
 
-
-### Installation
+### Installation & Execution
 
 1. Clone the repository:
+
 ```bash
 git clone git@github.com:ybounite/Inception.git
 cd Inception
-```
 
-2. Configure environment variables:
-```bash
-cp ../.env srcs/requirements/
-# Edit .env with your credentials
-```
-
-3. Start the infrastructure:
-```bash
-make
-```
-
-4. Access the website:
-```
-https://ybounite.42.fr
-```
-
-## 📚 Documentation
-
-- **[User Documentation](USER_DOC.md)** - For end users and administrators
-  - How to start/stop services
-  - Access URLs and credentials
-  - Troubleshooting guide
-  
-- **[Developer Documentation](DEV_DOC.md)** - For developers
-  - Environment setup from scratch
-  - Build and deployment process
-  - Container and volume management
-  - Network architecture
-
-## 🛠️ Available Commands
-
-```bash
-make          # Build and start all services
-make up       # Start all services
-make down     # Stop all services
-make build    # Build all images
-make ps       # Show running containers
-make logs     # View container logs
-make restart  # Restart all services
-make clean    # Stop and remove containers
-make fclean   # Complete cleanup (removes volumes)
-make re       # Rebuild everything from scratch
-```
+#Project Structure
 
 ## 📁 Project Structure
 
@@ -110,69 +67,61 @@ make re       # Rebuild everything from scratch
 └── DEV_DOC.md                       # Developer documentation
 ```
 
-## 📦 Docker Volumes
-
-Persistent data is stored in Docker volumes:
-
-- `wp` - WordPress files and uploads
-- `md` - Database files
-`
-
-## 🏗️ Architecture
-
-```
-    ┌────────────────────────────────────────┐
-    │           Docker Network               │
-    │                                        │
-    │  ┌─────────┐    ┌──────────┐           │
-    │  │  NGINX  │───▶│WordPress │           │
-    │  │  :443   │    │ php-fpm  │           │
-    │  └─────────┘    └────┬─────┘           │
-    │                      │                 │
-    │                      ▼                 │
-    │                 ┌─────────┐            │
-    │                 │ MariaDB │            │
-    │                 │  :3306  │            │
-    │                 └─────────┘            │
-    │                                        │
-    └────────────────────────────────────────┘
-            │                    │
-            ▼                    ▼
-      wordpress_data        mariadb_data
-        (volume)             (volume)
-```
-
-## ✅ Project Requirements
-
-- [x] Docker Compose for multi-container setup
-- [x] Custom Dockerfiles for each service
-- [x] Alpine Linux or Debian penultimate stable
-- [x] No pre-built Docker images (except base OS)
-- [x] TLS 1.2/1.3 encryption
-- [x] Two users in WordPress database
-- [x] Domain name pointing to local IP
-- [x] Environment variables for secrets
-- [x] Docker volumes for persistence
-- [x] Automatic container restart
-- [x] Docker network for inter-service communication
-- [x] Makefile for build automation
-
-
-## 👥 Authors
-
-[youssef bounite]
-
-## 🙏 Acknowledgments
-
-- 42 School Inception Project
-- Docker Documentation
-- WordPress Documentation
-- NGINX Documentation
-- bonus
 ---
 
-## Hostname Setup
+## Use of Docker & Design Choices
 
-Replace `https://ybounite.42.fr` with your own hostname:
+Docker is used to package each service into lightweight, isolated containers.  
+Docker Compose orchestrates these services, manages networking, and handles persistent storage.
 
-**Need help?** Check the [User Documentation](USER_DOC.md) or [Developer Documentation](DEV_DOC.md)
+### Virtual Machines vs Docker
+
+|   Virtual Machines   |        Docker      |
+├──────────────────────┼────────────────────┤
+| Full guest OS        | Shares host kernel |
+| Heavy resource usage | Lightweight        |
+| Slow startup         | Fast startup       |
+| Large disk footprint | Small footprint    |
+
+**Design choice:** Docker is more efficient, portable, and suitable for microservice architectures.
+
+---
+
+### Secrets vs Environment Variables
+
+|          Secrets           |     Environment Variables      |
+├────────────────────────────┼────────────────────────────────┤
+| Secure storage             | Plain-text exposure            |
+| Recommended for sensitive data | Suitable for configuration |
+| Managed securely            | Visible in container          |
+
+**Design choice:**  
+Environment variables are used as required by the subject. In real production environments, Docker Secrets would be preferred for sensitive credentials.
+
+---
+
+### Docker Network vs Host Network
+
+|    Docker Bridge Network   |    Host Network              |
+├────────────────────────────┼──────────────────────────────┤
+| Isolated internal network  |  Shares host network         |
+| Service name resolution    |  Direct port exposure        |
+| More secure                |  Less isolation              |
+
+**Design choice:**  
+A custom Docker bridge network ensures secure internal communication between services.
+
+---
+
+### Docker Volumes vs Bind Mounts
+
+|      Docker Volumes        |      Bind Mounts             |
+├────────────────────────────┼──────────────────────────────┤
+| Managed by Docker          | Linked directly to host path │
+| Portable                   | Host-dependent               │
+| Recommended for production | Often used in development    │
+
+**Design choice:**  
+Docker volumes are used to persist WordPress and MariaDB data.
+
+---
