@@ -6,7 +6,10 @@ echo "Starting MariaDB initialization..."
 
 service mariadb start
 
-sleep 3
+#Wait Until MariaDB Is Ready
+until mysqladmin ping --silent; do
+    sleep 1
+done
 
 mysqladmin -u root ping > /dev/null 2>&1
 
@@ -17,8 +20,11 @@ GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${DB_USER}'@'%' IDENTIFIED BY '${DB
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
+# gives the user full access to the database.
+# ensures permissions are applied immediately.
+
 echo "MariaDB initialization complete."
 
 service mariadb stop
 
-mysqld_safe
+exec mysqld --user=mysql --bind-address=0.0.0.0
