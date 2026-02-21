@@ -142,12 +142,12 @@ Classic references used for this project:
 
 - Docker documentation: https://docs.docker.com/
 - Docker Compose documentation: https://docs.docker.com/compose/
-- [Nigel Poulton, *Docker Deep Dive: Zero to Docker in a Single Book*](Docker_DeepDiveZeroToDockerInASingleBook.pdf)
+- Docker Deep Dive: Zero to Docker in a Single Book (Inception_42/Docker_DeepDiveZeroToDockerInASingleBook.pdf)
 - NGINX documentation: https://nginx.org/en/docs/
 - WordPress documentation: https://wordpress.org/documentation/
 - PHP-FPM documentation: https://www.php.net/manual/en/install.fpm.php
 - MariaDB documentation: https://mariadb.com/kb/en/documentation/
-- OWASP TLS/HTTPS best practices: https://cheatsheetseries.owasp.org/
+- OWASP TLS/HTTPS best practices: 
 
 ### AI Usage Disclosure
 
