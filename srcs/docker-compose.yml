@@ -39,6 +39,14 @@ services:
       - net-incption
     restart:  unless-stopped
   
+  redis:
+    build: ./requirements/bonus/redis/.
+    container_name: redis
+    image: redis
+    networks:
+      - net-incption
+    restart: unless-stopped
+
 networks:
   net-incption:
     driver: bridge
