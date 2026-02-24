@@ -28,6 +28,16 @@ if [ -f /var/www/html/wp-config.php ]
 		--admin_email=$WP_ADMINEMAIL --allow-root
 	wp user create $WP_USER $WP_USEREMAIL --role=author --user_pass=$WP_USERPASS\
 		--allow-root
+
+	#---- Redis Configuration ----
+	wp config set WP_REDIS_HOST redis --allow-root --path=/var/www/html --type=constant
+	wp config set WP_REDIS_PORT 6379 --allow-root --path=/var/www/html --type=constant
+	#install and activate the Redis Object Cache plugin
+	wp plugin install redis-cache --activate --allow-root --path=/var/www/html
+	#enable the Redis cache
+	wp redis enable --allow-root --path=/var/www/html
+	# verify that the Redis cache is working
+	#wp redis status --allow-root -path=/var/www/html
 fi
 
 mkdir -p /run/php
