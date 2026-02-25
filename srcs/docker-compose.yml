@@ -46,6 +46,20 @@ services:
     networks:
       - net-incption
     restart: unless-stopped
+  ftp:
+    build: ./requirements/bonus/ftp/.
+    container_name: ftp
+    image: ftp
+    ports:
+      - "21:21"
+      - "10000-10100:10000-10100"
+    env_file:
+      - .env
+    networks:
+      - net-incption
+    volumes:
+      - wordpress:/var/www/html
+    restart: unless-stopped
 
 networks:
   net-incption:
