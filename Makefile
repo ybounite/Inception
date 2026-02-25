@@ -10,9 +10,7 @@ up:
 	$(DOCKER) up -d --build
 
 down:
-	$(DOCKER) down -v
-	@sudo rm -rf $(LOCAL_DIR)wp/*
-	@sudo rm -rf $(LOCAL_DIR)db/*
+	$(DOCKER) down
 
 build:
 	$(DOCKER) build
@@ -31,6 +29,9 @@ logs:
 
 clean: stop
 	$(DOCKER) down --volumes
+
+fclean: clean
+	$(DOCKER) down --rmi all
 	@sudo rm -rf $(LOCAL_DIR)
 
 re: clean all
