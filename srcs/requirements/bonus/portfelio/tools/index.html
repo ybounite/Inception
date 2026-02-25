@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>youssef bounite - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .contact-bar {
+            background: #ecf0f1;
+            padding: 15px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            font-size: 1.1rem;
+        }
+
+        .contact-bar a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-bar a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 40px 30px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-3px);
+        }
+
+        .skill-category h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-category li:before {
+            content: "▹";
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            .contact-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            main {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>youssef bounite</h1>
+            <p>Developer & Infrastructure Enthusiast</p>
+        </header>
+
+        <div class="contact-bar">
+            <a href="mailto:ybounite@student.1337.ma">📧 ybounite@student.1337.ma</a>
+            <a href="https://www.linkedin.com/in/youssef-bounite/">🔗 LinkedIn</a>
+            <a href="https://github.com/ybounite/">🐙 GitHub</a>
+        </div>
+
+        <main>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h2>Programming Languages</h2>
+                    <ul>
+                        <li>C</li>
+                        <li>C++</li>
+                        <li>Shell Scripting (Bash)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h2>Frontend Development</h2>
+                    <ul>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h2>Database & Backend</h2>
+                    <ul>
+                        <li>MySQL</li>
+                        <li>MariaDB</li>
+                        <li>WordPress</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h2>DevOps & Infrastructure</h2>
+                    <ul>
+                        <li>Docker</li>
+                        <li>Docker Compose</li>
+                        <li>NGINX</li>
+                        <li>Git</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h2>Networking</h2>
+                    <ul>
+                        <li>TCP/IP</li>
+                        <li>IP Addressing</li>
+                        <li>Routing</li>
+                        <li>MAC Addressing</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h2>Core Skills</h2>
+                    <ul>
+                        <li>Problem Solving</li>
+                        <li>Algorithm Design</li>
+                        <li>System Administration</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 youssef bounite</p>
+            <p><a href="#">Back to top ↑</a></p>
+        </footer>
+    </div>
+</body>
+</html>

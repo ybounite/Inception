@@ -45,6 +45,7 @@ services:
     image: redis
     networks:
       - net-incption
+    # volumes
     restart: unless-stopped
   ftp:
     build: ./requirements/bonus/ftp/.
@@ -60,7 +61,16 @@ services:
     volumes:
       - wordpress:/var/www/html
     restart: unless-stopped
-
+  portfelio:
+    build: ./requirements/bonus/portfelio/.
+    container_name: portfelio
+    image: portfelio:0.1
+    ports:
+      - "8081:8081"
+    networks:
+      - net-incption
+    restart: unless-stopped
+  
 networks:
   net-incption:
     driver: bridge
