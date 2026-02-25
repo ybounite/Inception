@@ -38,8 +38,12 @@ if [ -f /var/www/html/wp-config.php ]
 	wp redis enable --allow-root --path=/var/www/html
 	# verify that the Redis cache is working
 	#wp redis status --allow-root -path=/var/www/html
+	# ftp
+	#FS_METHOD
 fi
 
 mkdir -p /run/php
+chown -R www-data:www-data /var/www/html
+#chmod -R g+w /var/www/html
 
 exec php-fpm8.2 -F
