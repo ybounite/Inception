@@ -70,7 +70,18 @@ services:
     networks:
       - net-incption
     restart: unless-stopped
-  
+  adminer:
+    build: ./requirements/bonus/adminer/.
+    container_name: adminer
+    image: adminer:0.1
+    depends_on:
+      - mariadb
+    ports:
+      - "600:80"
+    networks:
+      - net-incption
+    restart: unless-stopped
+
 networks:
   net-incption:
     driver: bridge
