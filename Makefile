@@ -7,6 +7,7 @@ all: up
 up:
 	@mkdir -p $(LOCAL_DIR)wp
 	@mkdir -p $(LOCAL_DIR)db
+	@mkdir -p $(LOCAL_DIR)portainer
 	$(DOCKER) up -d --build
 
 down:
