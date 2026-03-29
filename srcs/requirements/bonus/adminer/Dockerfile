@@ -11,4 +11,4 @@ COPY ./tools/setup.sh /
 
 RUN chmod +x /setup.sh
 
-CMD [ "./setup.sh" ]
+ENTRYPOINT [ "./setup.sh" ]

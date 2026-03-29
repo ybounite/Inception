@@ -26,12 +26,16 @@ ps:
 	$(DOCKER) ps
 
 logs:
-	$(DOCKER) logs 
+	$(DOCKER) logs
+vls:
+	docker volume ls
 
 clean: stop
 	$(DOCKER) down --volumes
 
 fclean: clean
+	docker system prune -fa
+	docker volume prune
 	$(DOCKER) down --rmi all
 	@sudo rm -rf $(LOCAL_DIR)
 

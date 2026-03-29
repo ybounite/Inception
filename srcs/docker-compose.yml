@@ -45,7 +45,6 @@ services:
     image: redis
     networks:
       - net-incption
-    # volumes
     restart: unless-stopped
   ftp:
     build: ./requirements/bonus/ftp/.
@@ -86,28 +85,14 @@ services:
     container_name: portainer
     image: portainer:0.1
     ports:
-      - "9443:9443"   # Main HTTPS web UI port
+      - "9443:9443"
     networks:
       - net-incption
     user: "0"
     volumes:
-      -  /var/run/docker.sock:/var/run/docker.sock # Crucial: Allows Portainer to manage Docker
-      - portainer_data:/data # Persistent volume for Portainer's own data
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
     restart: unless-stopped
-  #cadvisor:
-  #  build: ./requirements/bonus/cadvisor/.
-  #  container_name: cadvisor
-  #  image: cadvisor:0.1
-  #  ports:
-  #    - "8080:8080"
-  #  networks:
-  #    - net-incption
-  #  volumes:
-  #    - /:/rootfs:ro
-  #    - /var/run:/var/run:ro 
-  #    - /sys:/sys:ro 
-  #    - /var/lib/docker/:/var/lib/docker:ro
-  #  restart: unless-stopped
 
 networks:
   net-incption:

@@ -9,7 +9,6 @@ RUN apt update && apt install -y wget \
 
 RUN mkdir -p /data
 
-# Expose the ports: 9443 for the Web UI (HTTPS) and 8000 for the Edge tunnel (optional)
-EXPOSE 9443 8000
+EXPOSE 9443
 
-CMD ["/usr/local/bin/portainer", "-H", "unix:///var/run/docker.sock", "--data", "/data"]
+ENTRYPOINT ["/usr/local/bin/portainer", "-H", "unix:///var/run/docker.sock", "--data", "/data"]

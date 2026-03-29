@@ -20,9 +20,6 @@ GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${DB_USER}'@'%' IDENTIFIED BY '${DB
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
-# gives the user full access to the database.
-# ensures permissions are applied immediately.
-
 echo "MariaDB initialization complete."
 
 service mariadb stop
